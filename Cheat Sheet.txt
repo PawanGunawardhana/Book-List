@@ -1,0 +1,101 @@
+1. /**********Context API*******/
+clean& easy way to share state between components without having to pass props down all the time.
+
+/*********Hooks********/
+Tap into the inner workings of react in functional components .We can do bunch of stuff inside functional components that we can normally only do inside class components.
+
+When we use them together context and hooks they gonna allow us to work with shared data inside our application similar to how redux behaves.
+
+CC/cc(class component) react snippet eka ghla class component eka hduwa.but eka old version ekak function create krna, dan hodai sfc(stateless functional component).
+
+
+2.Context API 
+gives us a way to share state up and down a component tree quite easily.
+we can do this without a context api by using props but eka patta wadayakne ape component trees and application godak large unama..
+anna ekai api context API use krnne. this is going to do that by giving us a central place to store data or state and share it between components without having to use props.
+
+
+3.folder ekak hadnwa contexts kiyl src eka athule ethakota api hadana hma context ekkm eke store krnna puluwan.
+ThemeContext.js haduwa mokda theme eka kiynne mulu App ekema hama folder ekema same pawatinn one deyakne.ekai api theme ekata contextAPI use krnne.globally state huwamaru krgnn epai.
+
+import kragnnawa React, { createContext} , {component} from 'react';
+nattan apita context create krgnna ba.createContext function eken tamai context eka create krnne.
+api itpasse 
+
+
+4.lession 4 eke tiyenne user create krpu context components wla idan access krna widiya.
+mulinma class component ekak nm "static contextType = ThemeContext;" kiyla type krnaw.ThemeContext kiynne,
+user create karla export krpu context eka.
+ita passe apita puluwan "const { isLightTheme, dark, light } = this.context" kiyla desctructure krla e ek ek component eka athule,
+adala share wenna ona data tika use krnna.. 
+
+
+5. lession 5 tiyenne context eka pita idan access krna different method ekak. eka class component wlata krnna ba.eka hodai functional components wlata.
+mekedi wenne kalin context eka provide krna provider kenek hitiya wage dan e context eka consume krna consumer kenek innwa kiyna method eka.
+kalin krpu static contextType = ThemeContext; eka danne na..
+
+<ThemeContext.Consumer>{(context) => {
+    const {isLightTheme, light, dark} = context; //kalin api methana damme this.context ne.dan context pamani danne.
+    const theme = isLightTheme?light:dark // anith ewa e wdiyami.
+
+    return (
+        meke athule thamai ape jsx code eka return krnne.
+    )
+
+}}</ThemeContext.Consumer>
+
+me method eken puluwan multiple context access krnna same component ekata.habi 1st method eken ba.
+
+
+6.Updating context data. meke kale button ekk haduwa theme eka toggle krnna. ethkota button eka ThemeToggle wenama component ekakta dmma. ee btn eka click krma onClick ekak damma,
+function ekak call wena wdiyata,e func eken krnne ThemeContextProvider eke tiyena state walin isLightTheme state eka true,false widiyta change krn eka. me btn click krla themeToggle func eken 
+state change krna eka root proj ekatma effect wenna ona nisa eka damma ThemeContextProvider eka assata.
+
+
+7.meke tiyenne multiple context create krla use krna hati.ThemeContext eka haduwa wagema AuthContext ekak hdnwa. log wena user kenekta mulu whole project ekama e username eken epai use krnna puluwan wenna.
+eka nisa ekath context widiyata thamai api user krnne.prop use krnne nathuwa. mekanm ThemeContext haduwa wagema thamai itin.wenasakata tiyenne multiple context access krna eka.
+
+
+8.multiple context consume karnna first method eka use krnna ba.mokd static contextType = Themecontext; and static contextType = AuthContext kiyl 2k tiyaganna ba.error enwa.ai 'contextType' 2k tiyenwane.
+eka nisa api mekata use krnne AuthContext.Consumer kiyna eka.etkota hri.ekak static tiyala anit eka .Consumer walin access krnna puluwan.habai static 2k baaaa.ekai theorya.
+
+
+
+9./****************React Hooks*********/
+special functions.
+allows us to do additional things inside functional components.
+ e.g. useState
+
+ useState()- use state within a functional component
+
+ useEffect() - run code when a component renders (or re renders)
+
+ useContext() - consume context in a functional component.
+
+
+ 10.useState() -- eka itin values 2k return krnwa.ekak value ekak anika function eka.eken puluwan actual value eka change krnna.
+ import { v4 as uuidv4 } from 'uuid';
+kiyla package ekk tiyenwa auto id generate krna.
+... danne spread krnwa kiyana meaning ekata.e qwe array ekaknm eka ... dala spread krla gnna puluwan.
+we can use useState hook to use some state inside our functional  component.because previously it couldnt do in the past.
+we'd always have to use a class component to use state.
+
+
+11.useState() -- form ekakta use krna hati tiyenne.ekath itin loku awlk na. <input/> ekath button ekak widyta use krnna puluwan,type eka "submit" kiyl dala.type="submit" value='this is a button'.
+props use kara eka component ekakin anikata values pass krnna.title eka ehema.aluth song ekak add krddi ehema addSong use kra prop ekak widiyata.
+
+
+12.useEffect() hook. we can think this hook as a lifecycle method that we'd normally use inside class components in react.
+useEffect eka initial render ekedi saha hama change ekakadima re render wenawa api explicitly limit damme nathi unoth. same component eka athule multiple times use krnna puluwan.
+
+
+13.useContext() hook. mekenkrnne itin ara context access krna 3 weni method eka. mokda apita class component wala multiple context access krnna amarui. .Consumer use karama poddak confuse wenna puluwan context godak tiyena kota.
+eka nisa pahasuma method eka tamai useContext hook eka functional components athule use krna eka.
+
+
+14.useContext() hooks apita onatharam use krnna puluwan same component eka athule.eka nisa multiple context access krnna patta lesi.
+const {isLightTheme, light, dark} = useContext(ThemeContext);
+const {toggleAuth} = useContext(AuthContext);
+
+
+15.  Creating Context with Functional Components. used createContext function and useContext and useState hooks
