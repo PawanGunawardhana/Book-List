@@ -34,7 +34,7 @@ const NewBookForm = () => {
           setAuthor(e.target.value);
         }}
       />
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Add Book" />
     </form>
   );
 };
