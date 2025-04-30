@@ -10,7 +10,7 @@ const BookContextProvider = (props) => {
   ]);
 
   const addBook = (title, author) => {
-    setBooks([...books], { title: title, author: author, id: uuidv4() });
+    setBooks([...books, { title: title, author: author, id: uuidv4() }]);
   };
 
   const removeBook = (id) => {
